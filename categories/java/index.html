@@ -89,7 +89,13 @@
 			
 				<li><a href="http://lixiang.ac.cn/" target="_blank">技术笔记</a></li>
 			
-				<li><a href="/categories/java/" target="_blank">随笔</a></li>
+				<li><a href="/categories/java/" target="_blank">java</a></li>
+			
+				<li><a href="/categories/db/" target="_blank">数据库</a></li>
+			
+				<li><a href="/categories/framework/" target="_blank">框架</a></li>
+			
+				<li><a href="/categories/bigData/" target="_blank">大数据</a></li>
 			
 			</ul>
 		</nav>
@@ -178,6 +184,12 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -205,11 +217,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="http://lixiang.ac.cn/">技术笔记</a></li>
+					<li style="width: 16.666666666666668%"><a href="http://lixiang.ac.cn/">技术笔记</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/java/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/java/">java</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/db/">数据库</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/framework/">框架</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/bigData/">大数据</a></li>
 		        
 				</ul>
 			</nav>
@@ -359,10 +377,10 @@
   var titleTime;
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      document.title = "解忧杂货店 " + originTitle;
       clearTimeout(titleTime);
     } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      document.title = "解忧杂货店 " + originTitle;
       titleTime = setTimeout(function () {
         document.title = originTitle;
       }, 2000);

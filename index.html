@@ -93,7 +93,13 @@
 			
 				<li><a href="http://lixiang.ac.cn/" target="_blank">技术笔记</a></li>
 			
-				<li><a href="/categories/java/" target="_blank">随笔</a></li>
+				<li><a href="/categories/java/" target="_blank">java</a></li>
+			
+				<li><a href="/categories/db/" target="_blank">数据库</a></li>
+			
+				<li><a href="/categories/framework/" target="_blank">框架</a></li>
+			
+				<li><a href="/categories/bigData/" target="_blank">大数据</a></li>
 			
 			</ul>
 		</nav>
@@ -182,6 +188,12 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -209,11 +221,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="http://lixiang.ac.cn/">技术笔记</a></li>
+					<li style="width: 16.666666666666668%"><a href="http://lixiang.ac.cn/">技术笔记</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/java/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/java/">java</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/db/">数据库</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/framework/">框架</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/bigData/">大数据</a></li>
 		        
 				</ul>
 			</nav>
@@ -370,55 +388,36 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="HDFS的优缺点及MapReduce的运行机制"><a href="#HDFS的优缺点及MapReduce的运行机制" class="headerlink" title="HDFS的优缺点及MapReduce的运行机制"></a>HDFS的优缺点及MapReduce的运行机制</h3><h6 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h6><p>优点</p>
-<p>1、高容错性自动保存多个副本，丢失后可自动恢复。</p>
-<p>2、适合处理大数据</p>
-<p>3、可构建廉价服务器，提高性能。</p>
-<p>缺点:</p>
-<p>1、不适合低延时访问</p>
-<p>2、无法高效的对大量小文件存储</p>
-<p>3、不支持文件并发访问，文件随机修改。</p>
+    <h3 id="HDFS的优缺点及MapReduce的运行机制"><a href="#HDFS的优缺点及MapReduce的运行机制" class="headerlink" title="HDFS的优缺点及MapReduce的运行机制"></a>HDFS的优缺点及MapReduce的运行机制</h3><h6 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">优点</span><br><span class="line"></span><br><span class="line">1、高容错性自动保存多个副本，丢失后可自动恢复。</span><br><span class="line"></span><br><span class="line">2、适合处理大数据</span><br><span class="line"></span><br><span class="line">3、可构建廉价服务器，提高性能。</span><br><span class="line"></span><br><span class="line">缺点:</span><br><span class="line"></span><br><span class="line">1、不适合低延时访问</span><br><span class="line"></span><br><span class="line">2、无法高效的对大量小文件存储</span><br><span class="line"></span><br><span class="line">3、不支持文件并发访问，文件随机修改。</span><br></pre></td></tr></table></figure>
+
 <p>NameNode : 就是Master,它是一个主管、管理者</p>
-<p> 1、管理HDFS的名称空间</p>
-<p>2、配置副本策略</p>
-<p>3、管理数据块的映射信息</p>
-<p>4、处理客户端读写请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、管理HDFS的名称空间</span><br><span class="line">2、配置副本策略</span><br><span class="line">3、管理数据块的映射信息</span><br><span class="line">4、处理客户端读写请求</span><br></pre></td></tr></table></figure>
+
 <p>DataNode:就是Slave。NameNode下达命令，DataNode执行实际的操作。</p>
-<p>1、存储实际的数据块</p>
-<p>2、执行数据块的读写操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、存储实际的数据块</span><br><span class="line">2、执行数据块的读写操作</span><br></pre></td></tr></table></figure>
+
 <p>Client：就是客户端</p>
-<p>1、文件切分，将文件切分为一个个Block(默认128M)，然后上传。</p>
-<p>2、与NameNode交互，获取文件的位置信息</p>
-<p>3、与DataNode交互，读取或者写入数据</p>
-<p>4、Client提供一些命令来管理HDFS，比如NameNode格式化。</p>
-<p>5、Client可通过一些命令来访问HDFS,比如对HDFS增删改查操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、文件切分，将文件切分为一个个Block(默认128M)，然后上传。</span><br><span class="line">2、与NameNode交互，获取文件的位置信息</span><br><span class="line">3、与DataNode交互，读取或者写入数据</span><br><span class="line">4、Client提供一些命令来管理HDFS，比如NameNode格式化。</span><br><span class="line">5、Client可通过一些命令来访问HDFS,比如对HDFS增删改查操作。</span><br></pre></td></tr></table></figure>
+
 <p>Secondary NameNode :当NameNode挂掉的时候，它并不能马上替换NameNode并提供服务。</p>
-<p>1、辅助NameNode，分担工作量，日入定期合并Fsimage和Edits，并推送给NameNode;</p>
-<p>2、在紧急情况下，可恢复NameNode。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、辅助NameNode，分担工作量，日入定期合并Fsimage和Edits，并推送给NameNode;</span><br><span class="line">2、在紧急情况下，可恢复NameNode。</span><br></pre></td></tr></table></figure>
+
 <p>HDFS块的大小设置主要取决于磁盘传输速率，寻址时间为传输时间的1%时，则为最佳状态。</p>
 <p>安全模式：</p>
 <p>上传文件时一定是非安全模式。集群启动后，自动退出安全模式。</p>
-<p>​     a、hdfs dfsadmin -safemode get 查看安全模式的状态。</p>
-<p>b、hdfs dfsadmin -safemode enter/leave 进入/离开安全模式</p>
-<p>​      c、hdfs dfsadmin -safemode wait等待安全模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a、hdfs dfsadmin -safemode get 查看安全模式的状态。</span><br><span class="line">b、hdfs dfsadmin -safemode enter&#x2F;leave 进入&#x2F;离开安全模式</span><br><span class="line">c、hdfs dfsadmin -safemode wait等待安全模式</span><br></pre></td></tr></table></figure>
+
 <p>解决存储小文件的办法之一：</p>
 <p>HDFS存档文件或者是HAR文件，是一个高效的文件存档工具，它将文件存入HDFS块，在减少NameNode内存的同时，允许对文件的透明访问。具体来说，HDFS存档文件对内还是一个个 独立文件,对NameNode还是一个整体，减少了NameNode的内存 。</p>
 <p>快照管理：</p>
 <p>快照相当于对文件做一个备份，并不会立即复制所有文件，而是指向同一个文件，当写入发生时，才会产生新文件。</p>
-<p>1、hdfs dfadmin -allowSnapshot 路径 开启快照</p>
-<p>2、hdfs dfadmin -disallowSnapshot 路径 关闭快照</p>
-<p>3、hdfs dfs -createSnapshot 路径  创建快照</p>
-<p>4、hdfs lsSnapshottableDir  查看快照</p>
-<p>5、hdfs snapshotDiff 路径1  .  路径2  比较两个路径的不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、hdfs dfadmin -allowSnapshot 路径 开启快照</span><br><span class="line">2、hdfs dfadmin -disallowSnapshot 路径 关闭快照</span><br><span class="line">3、hdfs dfs -createSnapshot 路径  创建快照</span><br><span class="line">4、hdfs lsSnapshottableDir  查看快照</span><br><span class="line">5、hdfs snapshotDiff 路径1  .  路径2  比较两个路径的不同</span><br></pre></td></tr></table></figure>
+
+
+
 <h5 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce:"></a>MapReduce:</h5><p>分布式运算程序编程框架，是用户开发“基于Hadoop”的编程框架。</p>
-<p>优势：1、MapReduce易于编程</p>
-<p>​            2、良好的可扩展性。</p>
-<p>​            3、高容错性。</p>
-<p>​            4、适合PB级以上海量数据的离线存储。</p>
-<p>缺点：</p>
-<p>​        1、不擅长实时计算</p>
-<p>​        2、不擅长流式计算</p>
-<p>​        3、不擅长DAG(有向图)的计算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">优势：</span><br><span class="line">1、MapReduce易于编程</span><br><span class="line">2、良好的可扩展性。</span><br><span class="line">3、高容错性。</span><br><span class="line">4、适合PB级以上海量数据的离线存储。</span><br><span class="line">缺点：</span><br><span class="line">1、不擅长实时计算</span><br><span class="line">2、不擅长流式计算</span><br><span class="line">3、不擅长DAG(有向图)的计算。</span><br></pre></td></tr></table></figure>
+
 <p>核心思想：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">一个完整的MapReduc 程序在分布式运行时有三类实例进程。</span><br><span class="line"></span><br><span class="line">MrAppMaster:负责整个程序的过程调度及状态协调</span><br><span class="line"></span><br><span class="line">MapTask:负责Map阶段的整个数据流程处理。</span><br><span class="line"></span><br><span class="line">ReduceTask:负责reduce阶段的整个数据流程处理。</span><br></pre></td></tr></table></figure>
 
@@ -647,10 +646,10 @@
   var titleTime;
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      document.title = "解忧杂货店 " + originTitle;
       clearTimeout(titleTime);
     } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      document.title = "解忧杂货店 " + originTitle;
       titleTime = setTimeout(function () {
         document.title = originTitle;
       }, 2000);
