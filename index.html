@@ -232,6 +232,115 @@
             
 
   
+    <article id="post-java导出PDF-解决linux下中文字体不显示" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/04/03/java%E5%AF%BC%E5%87%BAPDF-%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93%E4%B8%8D%E6%98%BE%E7%A4%BA/" target="_blank">java导出PDF,解决linux服务器下中文字体不显示</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/04/03/java%E5%AF%BC%E5%87%BAPDF-%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93%E4%B8%8D%E6%98%BE%E7%A4%BA/" class="archive-article-date">
+        <time datetime="2021-04-03T08:24:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="java导出PDF-解决linux服务器下中文字体不显示"><a href="#java导出PDF-解决linux服务器下中文字体不显示" class="headerlink" title="java导出PDF,解决linux服务器下中文字体不显示"></a>java导出PDF,解决linux服务器下中文字体不显示</h3><p>最近，有个需求导出PDF表格，经过市面上技术的调研，最终选择了itext全家桶。</p>
+<p>通过模板freeMark，将HTML渲染到PDF中。支持图片等。</p>
+<p><code>itextpdf</code> 作为 pdf 生成核心,<code>xmlworker</code> 用于 html 转 pdf,<code>itext-asian</code> 用于支持中文显示,视情况而定还可以引入 <code>nekohtml</code> 对非标准 html 页面进行标签补全。</p>
+<ol>
+<li>maven引入核心依赖</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;com.itextpdf&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;itextpdf&lt;/artifactId&gt;</span><br><span class="line">          &lt;version&gt;5.5.11&lt;/version&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;com.itextpdf.tool&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;xmlworker&lt;/artifactId&gt;</span><br><span class="line">          &lt;version&gt;5.5.11&lt;/version&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;com.itextpdf&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;itext-asian&lt;/artifactId&gt;</span><br><span class="line">          &lt;version&gt;5.2.0&lt;/version&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2、核心代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.itextpdf.text.Document;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.Font;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.PageSize;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.pdf.BaseFont;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.pdf.PdfWriter;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.tool.xml.XMLWorkerFontProvider;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.tool.xml.XMLWorkerHelper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PDFUtil</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeStringToOutputStreamAsPDF</span><span class="params">(String html, OutputStream os)</span> </span>&#123;</span><br><span class="line">        writeToOutputStreamAsPDF(<span class="keyword">new</span> ByteArrayInputStream(html.getBytes()), os);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeToOutputStreamAsPDF</span><span class="params">(InputStream html, OutputStream os)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Document document = <span class="keyword">new</span> Document(PageSize.A4);</span><br><span class="line">            PdfWriter pdfWriter = PdfWriter.getInstance(document, os);</span><br><span class="line">            document.open();</span><br><span class="line">            XMLWorkerHelper worker = XMLWorkerHelper.getInstance();</span><br><span class="line">            worker.parseXHtml(pdfWriter, document, html, Charset.forName(<span class="string">&quot;UTF-8&quot;</span>), <span class="keyword">new</span> AsianFontProvider());</span><br><span class="line">            document.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用于中文显示的Provider</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsianFontProvider</span> <span class="keyword">extends</span> <span class="title">XMLWorkerFontProvider</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Font <span class="title">getFont</span><span class="params">(<span class="keyword">final</span> String fontname, String encoding, <span class="keyword">float</span> size, <span class="keyword">final</span> <span class="keyword">int</span> style)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            BaseFont bfChinese = BaseFont.createFont(<span class="string">&quot;STSongStd-Light&quot;</span>, <span class="string">&quot;UniGB-UCS2-H&quot;</span>, BaseFont.NOT_EMBEDDED);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Font(bfChinese, size, style);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.getFont(fontname, encoding, size, style);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中writeStringToOutputStreamAsPDF中Html为通过流读取的字符串，如果项目采用的是jar包形式，放在resource目录下，可能会导致找不到路径。故采用的流方式读取。</p>
+<p>AsianFontProvider解决linux下导出中文字体不显示问题。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/04/03/java%E5%AF%BC%E5%87%BAPDF-%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93%E4%B8%8D%E6%98%BE%E7%A4%BA/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Hadoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -603,6 +712,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
             
             <div class="clearfix"></div>
