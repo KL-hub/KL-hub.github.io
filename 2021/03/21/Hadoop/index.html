@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lixiang.ac.cn">
-  <title>Tag: Test | 解忧杂货店</title>
+  <title>myArticle | 解忧杂货店</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="解忧杂货店">
-<meta property="og:url" content="http://lixiang.ac.cn/tags/Test/index.html">
+  <meta name="description" content="HDFS的优缺点及MapReduce的运行机制HDFS优点 1、高容错性自动保存多个副本，丢失后可自动恢复。 2、适合处理大数据 3、可构建廉价服务器，提高性能。 缺点: 1、不适合低延时访问 2、无法高效的对大量小文件存储 3、不支持文件并发访问，文件随机修改。 NameNode : 就是Master,它是一个主管、管理者  1、管理HDFS的名称空间 2、配置副本策略 3、管理数据块的映射信息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="myArticle">
+<meta property="og:url" content="http://lixiang.ac.cn/2021/03/21/Hadoop/index.html">
 <meta property="og:site_name" content="解忧杂货店">
+<meta property="og:description" content="HDFS的优缺点及MapReduce的运行机制HDFS优点 1、高容错性自动保存多个副本，丢失后可自动恢复。 2、适合处理大数据 3、可构建廉价服务器，提高性能。 缺点: 1、不适合低延时访问 2、无法高效的对大量小文件存储 3、不支持文件并发访问，文件随机修改。 NameNode : 就是Master,它是一个主管、管理者  1、管理HDFS的名称空间 2、配置副本策略 3、管理数据块的映射信息">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-21T05:15:39.000Z">
+<meta property="article:modified_time" content="2021-03-21T08:01:39.818Z">
 <meta property="article:author" content="KL">
+<meta property="article:tag" content="大数据">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="解忧杂货店" type="application/atom+xml">
@@ -225,65 +230,336 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Hadoop" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/21/myArticle/" class="archive-article-date">
-        <time datetime="2021-03-21T05:15:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-21</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/21/myArticle/" target="_blank">myArticle</a>
   
+    <h1 class="article-title" itemprop="name">
+      myArticle
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2021/03/21/Hadoop/" class="archive-article-date">
+        <time datetime="2021-03-21T05:15:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-21</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="HDFS的优缺点及MapReduce的运行机制"><a href="#HDFS的优缺点及MapReduce的运行机制" class="headerlink" title="HDFS的优缺点及MapReduce的运行机制"></a>HDFS的优缺点及MapReduce的运行机制</h3><h6 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h6><p>优点</p>
+<p>1、高容错性自动保存多个副本，丢失后可自动恢复。</p>
+<p>2、适合处理大数据</p>
+<p>3、可构建廉价服务器，提高性能。</p>
+<p>缺点:</p>
+<p>1、不适合低延时访问</p>
+<p>2、无法高效的对大量小文件存储</p>
+<p>3、不支持文件并发访问，文件随机修改。</p>
+<p>NameNode : 就是Master,它是一个主管、管理者</p>
+<p> 1、管理HDFS的名称空间</p>
+<p>2、配置副本策略</p>
+<p>3、管理数据块的映射信息</p>
+<p>4、处理客户端读写请求</p>
+<p>DataNode:就是Slave。NameNode下达命令，DataNode执行实际的操作。</p>
+<p>1、存储实际的数据块</p>
+<p>2、执行数据块的读写操作</p>
+<p>Client：就是客户端</p>
+<p>1、文件切分，将文件切分为一个个Block(默认128M)，然后上传。</p>
+<p>2、与NameNode交互，获取文件的位置信息</p>
+<p>3、与DataNode交互，读取或者写入数据</p>
+<p>4、Client提供一些命令来管理HDFS，比如NameNode格式化。</p>
+<p>5、Client可通过一些命令来访问HDFS,比如对HDFS增删改查操作。</p>
+<p>Secondary NameNode :当NameNode挂掉的时候，它并不能马上替换NameNode并提供服务。</p>
+<p>1、辅助NameNode，分担工作量，日入定期合并Fsimage和Edits，并推送给NameNode;</p>
+<p>2、在紧急情况下，可恢复NameNode。</p>
+<p>HDFS块的大小设置主要取决于磁盘传输速率，寻址时间为传输时间的1%时，则为最佳状态。</p>
+<p>安全模式：</p>
+<p>上传文件时一定是非安全模式。集群启动后，自动退出安全模式。</p>
+<p>​     a、hdfs dfsadmin -safemode get 查看安全模式的状态。</p>
+<p>b、hdfs dfsadmin -safemode enter/leave 进入/离开安全模式</p>
+<p>​      c、hdfs dfsadmin -safemode wait等待安全模式</p>
+<p>解决存储小文件的办法之一：</p>
+<p>HDFS存档文件或者是HAR文件，是一个高效的文件存档工具，它将文件存入HDFS块，在减少NameNode内存的同时，允许对文件的透明访问。具体来说，HDFS存档文件对内还是一个个 独立文件,对NameNode还是一个整体，减少了NameNode的内存 。</p>
+<p>快照管理：</p>
+<p>快照相当于对文件做一个备份，并不会立即复制所有文件，而是指向同一个文件，当写入发生时，才会产生新文件。</p>
+<p>1、hdfs dfadmin -allowSnapshot 路径 开启快照</p>
+<p>2、hdfs dfadmin -disallowSnapshot 路径 关闭快照</p>
+<p>3、hdfs dfs -createSnapshot 路径  创建快照</p>
+<p>4、hdfs lsSnapshottableDir  查看快照</p>
+<p>5、hdfs snapshotDiff 路径1  .  路径2  比较两个路径的不同</p>
+<h5 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce:"></a>MapReduce:</h5><p>分布式运算程序编程框架，是用户开发“基于Hadoop”的编程框架。</p>
+<p>优势：1、MapReduce易于编程</p>
+<p>​            2、良好的可扩展性。</p>
+<p>​            3、高容错性。</p>
+<p>​            4、适合PB级以上海量数据的离线存储。</p>
+<p>缺点：</p>
+<p>​        1、不擅长实时计算</p>
+<p>​        2、不擅长流式计算</p>
+<p>​        3、不擅长DAG(有向图)的计算。</p>
+<p>核心思想：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">一个完整的MapReduc 程序在分布式运行时有三类实例进程。</span><br><span class="line"></span><br><span class="line">MrAppMaster:负责整个程序的过程调度及状态协调</span><br><span class="line"></span><br><span class="line">MapTask:负责Map阶段的整个数据流程处理。</span><br><span class="line"></span><br><span class="line">ReduceTask:负责reduce阶段的整个数据流程处理。</span><br></pre></td></tr></table></figure>
+
+<p>Hadoop序列化:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java的序列化是一个重量级的序列化框架，一个对象被序列化后，会附带很多的额外信息，不便于在网络中高效的传输。所以，Hadoop自己开发了一套序列化机制。</span><br><span class="line">  特点：a:紧凑（高效使用存储空间）</span><br><span class="line">        b:快速 (读写数据的额外开销小)</span><br><span class="line">        c:可扩展（随着通信协议的升级而升级）</span><br><span class="line">        d:互操作（支持多语言的交互）</span><br></pre></td></tr></table></figure>
+
+<p>数据切片与MapTask并行度决定机制:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、一个job 的Map阶段并行度由客户端提交job时的切片数决定。</span><br><span class="line"></span><br><span class="line">2、每一个Split切片分配一个 并行处理实例。</span><br><span class="line"></span><br><span class="line">3、默认情况下，切片大小&#x3D;BlockSize</span><br><span class="line"></span><br><span class="line">4、切片时不考虑数据集整体，而是逐个对每一个文件切片。</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          KL
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://lixiang.ac.cn/2021/03/21/Hadoop/" title="myArticle" target="_blank">http://lixiang.ac.cn/2021/03/21/Hadoop/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Test</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
     
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://lixiang.ac.cn/2021/03/21/Hadoop/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+<div id="SOHUCS" sid="Hadoop" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
+
+
+
+
+
+
+
+  
+  <div id="gitment-ctn"></div>
+  
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "myArticle" -->
+    var gitment = new Gitment({
+      id: "20210321131539",
+      owner: 'true',
+      repo: 'hexoComment',
+      oauth: {
+        client_id: 'f53f0b83a116a3b52a79',
+        client_secret: '7f5c9bbf87f3f1037ff6d3c7caa512c201f2d726',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
+  
+
 
 
           </div>
@@ -324,9 +600,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -412,11 +688,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Test</a>
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
             
             <div class="clearfix"></div>
